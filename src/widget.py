@@ -3,9 +3,9 @@ from masks import get_mask_account, get_mask_card_number
 user_string = input("Введите номер карты или счета")
 
 
-def mask_account_card(user_string: str) -> str:
+def mask_account_card(string_input: str) -> str:
     """Функция обрабатывает строку, содержащую тип и номер карты или счета"""
-    parts = user_string.split(" ")  # Разделяем строку по пробелам
+    parts = string_input.split(" ")  # Разделяем строку по пробелам
     parts_type = ""
     if len(parts) == 2:
         parts_type = " ".join(parts[:1])
