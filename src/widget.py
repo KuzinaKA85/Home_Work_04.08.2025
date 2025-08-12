@@ -1,5 +1,6 @@
 from masks import get_mask_account, get_mask_card_number
 
+
 user_string = input("Введите номер карты или счета")
 
 
