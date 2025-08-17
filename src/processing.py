@@ -1,14 +1,14 @@
+from datetime import datetime
 from typing import Dict, List
 
 
 def filter_by_state(list_of_dicts: List[Dict], state: str = "EXECUTED") -> List[Dict]:
     """Функция, которая сортирует данные по статусу 'state'"""
-    sorted_list = []
+    filtered_list = []
     for element in list_of_dicts:
-        for key, value in element.items():
-            if element[key] == state:
-                sorted_list.append(element)
-    return sorted_list
+        if "state" in element and element["state"] == state:
+            filtered_list.append(element)
+    return filtered_list
 
 
 user_list = [
@@ -21,10 +21,11 @@ user_list = [
 print(filter_by_state(user_list))
 
 
-def sort_by_date(list_of_dicts: List[Dict], is_reverse: bool = True) -> List:
+def sort_by_date(list_of_dicts: List[Dict], date_key: str = "date", descending: bool = True) -> List:
     """Функция, которая сортирует список словарей по дате в порядке убывания"""
-    sorted_list_of_dicts = sorted(list_of_dicts, key=lambda element: element["date"], reverse=True)
-    return sorted_list_of_dicts
+    return sorted(
+        list_of_dicts, key=lambda x: datetime.strptime(x[date_key], "%Y-%m-%dT%H:%M:%S.%f"), reverse=descending
+    )
 
 
-print(sort_by_date(user_list, is_reverse=True))
+print(sort_by_date(user_list))
