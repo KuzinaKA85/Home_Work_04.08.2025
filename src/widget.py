@@ -1,9 +1,6 @@
 from masks import get_mask_account, get_mask_card_number
 
 
-user_string = input("Введите номер карты или счета")
-
-
 def mask_account_card(string_input: str) -> str:
     """Функция обрабатывает строку, содержащую тип и номер карты или счета"""
     parts = string_input.split(" ")  # Разделяем строку по пробелам
@@ -25,11 +22,6 @@ def mask_account_card(string_input: str) -> str:
     return mask_input_string
 
 
-print(mask_account_card(user_string))
-
-user_date = input("Введите дату")
-
-
 def get_date(user_input: str) -> str:
     """Функция преобразует дату в формат ДД.ММ.ГГГГ"""
     day = user_input[8:10]
@@ -38,4 +30,8 @@ def get_date(user_input: str) -> str:
     return day + "." + month + "." + year
 
 
-print(get_date(user_date))
+# Функция проверки работы кода
+if __name__ == "__main__":
+    print(mask_account_card("Visa Platinum 7000792289606361"))
+    print(mask_account_card("Счет 73654108430135874305"))
+    print(get_date("2024-03-11T02:26:18.671407"))

@@ -3,6 +3,8 @@ from typing import Dict, List
 
 def filter_by_state(list_of_dicts: List[Dict], state: str) -> List:
     """Функция, которая сортирует список словарей по значению ключа 'state'"""
+    if not list_of_dicts:
+        raise ValueError("Пустой список")
     new_list = []
     for element in list_of_dicts:
         for key, value in element.items():
