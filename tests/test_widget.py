@@ -27,6 +27,9 @@ def test_mask_account_card(number_card_for_widget, expected):
 def test_mask_account_card(number_account_for_widget, expected):
     assert mask_account_card(number_account_for_widget) == expected
 
+def test_mask_account_card_length():
+    assert mask_account_card("") == "Пустой ввод"
+
 
 @pytest.mark.parametrize("expected", ["11.03.2024"])
 def test_get_date(date, expected):
