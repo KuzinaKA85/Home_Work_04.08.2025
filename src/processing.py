@@ -1,4 +1,5 @@
-from typing import Dict, List
+from datetime import datetime
+from typing import Any, Dict, List
 
 
 def filter_by_state(list_of_dicts: List[Dict], state: str) -> List:
@@ -20,13 +21,24 @@ my_list = [
     {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
 ]
 
-print(filter_by_state(my_list, "EXECUTED"))
 
-
-def sort_by_date(list_of_dicts: List[Dict], reverse: bool) -> List:
+def sort_by_date(list_of_dicts: List[Dict], reverse: bool) -> Any:
     """Функция, которая сортирует список словарей по дате в порядке убывания"""
-    sorted_list_of_dicts = sorted(list_of_dicts, key=lambda element: element["date"], reverse=True)
-    return sorted_list_of_dicts
+    if not list_of_dicts:
+        raise ValueError("Пустой список")
+    key_to_check = "date"
+    for dicttionary in list_of_dicts:
+        if dicttionary.get(key_to_check) is None:
+            return "Дата не найдена"
+        else:
+            sorted_list_of_dicts = sorted(list_of_dicts, key=lambda element: element["date"], reverse=True)
+            return sorted_list_of_dicts
 
 
-print(sort_by_date(my_list, reverse=True))
+# Функция проверки работы кода
+if __name__ == "__main__":
+    print(filter_by_state(my_list, "EXECUTED"))
+    print(filter_by_state(my_list, "CANCELED"))
+    print(sort_by_date(my_list, reverse=True))
+    print(sort_by_date([{"id": 41428829, "state": "EXECUTED"}], reverse=True))
+    print(filter_by_state([], "EXECUTED"))
