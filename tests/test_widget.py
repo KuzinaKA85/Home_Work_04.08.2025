@@ -19,13 +19,14 @@ def date():
 
 
 @pytest.mark.parametrize("expected", ["Visa Platinum 7000 79** **** 6361"])
-def test_mask_account_card(number_card_for_widget, expected):
+def test_mask_card(number_card_for_widget, expected):
     assert mask_account_card(number_card_for_widget) == expected
 
 
 @pytest.mark.parametrize("expected", ["Счёт **4305"])
-def test_mask_account_card(number_account_for_widget, expected):
+def test_mask_account(number_account_for_widget, expected):
     assert mask_account_card(number_account_for_widget) == expected
+
 
 def test_mask_account_card_length():
     assert mask_account_card("") == "Пустой ввод"
