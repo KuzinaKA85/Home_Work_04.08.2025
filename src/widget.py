@@ -1,33 +1,28 @@
-from masks import get_mask_account, get_mask_card_number
-
-
-user_string = input("Введите номер карты или счета")
+from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(string_input: str) -> str:
     """Функция обрабатывает строку, содержащую тип и номер карты или счета"""
-    parts = string_input.split(" ")  # Разделяем строку по пробелам
-    parts_type = ""
-    if len(parts) == 2:
-        parts_type = " ".join(parts[:1])
-    elif len(parts) > 2:
-        parts_type = " ".join(parts[:2])
-    part_digit = ""
-    mask_number = 0
-    for i in parts:
-        if i.isdigit():
-            part_digit += i
-    if len(part_digit) == 16:
-        mask_number = get_mask_card_number(part_digit)
-    if len(part_digit) == 20:
-        mask_number = get_mask_account(part_digit)
-    mask_input_string = str(parts_type) + " " + str(mask_number)
-    return mask_input_string
-
-
-print(mask_account_card(user_string))
-
-user_date = input("Введите дату")
+    if string_input == "":
+        return "Пустой ввод"
+    else:
+        parts = string_input.split(" ")  # Разделяем строку по пробелам
+        parts_type = ""
+        if len(parts) == 2:
+            parts_type = " ".join(parts[:1])
+        elif len(parts) > 2:
+            parts_type = " ".join(parts[:2])
+        part_digit = ""
+        mask_number = None
+        for i in parts:
+            if i.isdigit():
+                part_digit += i
+        if len(part_digit) == 16:
+            mask_number = get_mask_card_number(part_digit)
+        if len(part_digit) == 20:
+            mask_number = get_mask_account(part_digit)
+        mask_input_string = str(parts_type) + " " + str(mask_number)
+        return mask_input_string
 
 
 def get_date(user_input: str) -> str:
@@ -38,4 +33,10 @@ def get_date(user_input: str) -> str:
     return day + "." + month + "." + year
 
 
-print(get_date(user_date))
+# Функция проверки работы кода
+if __name__ == "__main__":
+    print(mask_account_card(""))
+    print(mask_account_card("Visa Platinum 7000792289606361"))
+    print(mask_account_card("Maestro 7000792289606361"))
+    print(mask_account_card("Счет 73654108430135874305"))
+    print(get_date("2024-03-11T02:26:18.671407"))

@@ -1,14 +1,16 @@
-from datetime import datetime
-from typing import Dict, List
+from typing import Any, Dict, List
 
 
-def filter_by_state(list_of_dicts: List[Dict], state: str = "EXECUTED") -> List[Dict]:
-    """Функция, которая сортирует данные по статусу 'state'"""
-    filtered_list = []
+def filter_by_state(list_of_dicts: List[Dict], state: str) -> List:
+    """Функция, которая сортирует список словарей по значению ключа 'state'"""
+    if not list_of_dicts:
+        raise ValueError("Пустой список")
+    new_list = []
     for element in list_of_dicts:
-        if "state" in element and element["state"] == state:
-            filtered_list.append(element)
-    return filtered_list
+        for key, value in element.items():
+            if element[key] == state:
+                new_list.append(element)
+    return new_list
 
 
 user_list = [
@@ -18,14 +20,24 @@ user_list = [
     {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
 ]
 
-print(filter_by_state(user_list))
 
-
-def sort_by_date(list_of_dicts: List[Dict], date_key: str = "date", descending: bool = True) -> List:
+def sort_by_date(list_of_dicts: List[Dict], reverse: bool) -> Any:
     """Функция, которая сортирует список словарей по дате в порядке убывания"""
-    return sorted(
-        list_of_dicts, key=lambda x: datetime.strptime(x[date_key], "%Y-%m-%dT%H:%M:%S.%f"), reverse=descending
-    )
+    if not list_of_dicts:
+        raise ValueError("Пустой список")
+    key_to_check = "date"
+    for dictionary in list_of_dicts:
+        if dictionary.get(key_to_check) is None:
+            return "Дата не найдена"
+        else:
+            sorted_list_of_dicts = sorted(list_of_dicts, key=lambda element: element["date"], reverse=True)
+            return sorted_list_of_dicts
 
 
-print(sort_by_date(user_list))
+# Функция проверки работы кода
+if __name__ == "__main__":
+    print(filter_by_state(my_list, "EXECUTED"))
+    print(filter_by_state(my_list, "CANCELED"))
+    print(sort_by_date(my_list, reverse=True))
+    print(sort_by_date([{"id": 41428829, "state": "EXECUTED"}], reverse=True))
+    print(filter_by_state([], "EXECUTED"))
