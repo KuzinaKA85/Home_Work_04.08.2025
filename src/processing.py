@@ -13,7 +13,7 @@ def filter_by_state(list_of_dicts: List[Dict], state: str) -> List:
     return new_list
 
 
-my_list = [
+user_list = [
     {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
     {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
     {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
@@ -26,8 +26,8 @@ def sort_by_date(list_of_dicts: List[Dict], reverse: bool) -> Any:
     if not list_of_dicts:
         raise ValueError("Пустой список")
     key_to_check = "date"
-    for dicttionary in list_of_dicts:
-        if dicttionary.get(key_to_check) is None:
+    for dictionary in list_of_dicts:
+        if dictionary.get(key_to_check) is None:
             return "Дата не найдена"
         else:
             sorted_list_of_dicts = sorted(list_of_dicts, key=lambda element: element["date"], reverse=True)
