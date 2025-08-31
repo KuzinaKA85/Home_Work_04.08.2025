@@ -49,12 +49,12 @@ transactions = [
 ]
 
 
-def filter_by_currency(transactions_: List[Dict], name: str) -> Iterable:
+def filter_by_currency(transactions: List[Dict], name: str) -> Iterable[Dict]:
     """Функция принимает на вход список словарей, представляющих транзакции.
     Возвращает итератор, который поочередно выдает транзакции, где валюта операции
     соответствует заданной"""
-    for dictionary in transactions_:
-        if dictionary["operationAmount"]["currency"]["name"] == "USD":
+    for dictionary in transactions:
+        if dictionary["operationAmount"]["currency"]["name"] == name:
             yield dictionary
 
 
