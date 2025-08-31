@@ -59,6 +59,7 @@ def filter_by_currency(transactions: List[Dict], name: str) -> Iterable[Dict]:
 
 
 usd_transactions = filter_by_currency(transactions, "USD")
+
 for item in usd_transactions:
     print(item)
 

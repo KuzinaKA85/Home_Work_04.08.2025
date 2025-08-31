@@ -43,9 +43,77 @@ Maestro 7000792289606361, или Счет 73654108430135874305.
 4. Функция ***get_date*** используется для просмотра даты
 5. Функция ***filter_by_state*** используется для просмотра операций по статусу операции
 6. Функция ***sort_by_date*** используется для сортировки операций по дате в порядке убывания
+7. Функция ***filter_by_currency*** используется для просмотра операций с заданной валютой
+
+   Пример использования функции:
+```
+usd_transactions = filter_by_currency(transactions, "USD")
+for _ in range(2):
+    print(next(usd_transactions))
+
+>>> {
+          "id": 939719570,
+          "state": "EXECUTED",
+          "date": "2018-06-30T02:08:58.425572",
+          "operationAmount": {
+              "amount": "9824.07",
+              "currency": {
+                  "name": "USD",
+                  "code": "USD"
+              }
+          },
+          "description": "Перевод организации",
+          "from": "Счет 75106830613657916952",
+          "to": "Счет 11776614605963066702"
+      }
+      {
+              "id": 142264268,
+              "state": "EXECUTED",
+              "date": "2019-04-04T23:20:05.206878",
+              "operationAmount": {
+                  "amount": "79114.93",
+                  "currency": {
+                      "name": "USD",
+                      "code": "USD"
+                  }
+              },
+              "description": "Перевод со счета на счет",
+              "from": "Счет 19708645243227258542",
+              "to": "Счет 75651667383060284188"
+       }
+```
+
+8. Функция ***transaction_descriptions*** используется для просмотра описания операций 
+   
+   Пример сипользования функции:
+```
+descriptions = transaction_descriptions(transactions)
+for _ in range(5):
+    print(next(descriptions))
+
+>>> Перевод организации
+    Перевод со счета на счет
+    Перевод со счета на счет
+    Перевод с карты на карту
+    Перевод организации
+```
+9. Функция ***generator_numbers_card*** используется для генерации номеров банковских карт в формате ХХХХ ХХХХ ХХХХ ХХХХ
+
+   Пример использования функции:
+```
+for card_number in card_number_generator(1, 5):
+    print(card_number)
+
+>>> 0000 0000 0000 0001
+    0000 0000 0000 0002
+    0000 0000 0000 0003
+    0000 0000 0000 0004
+    0000 0000 0000 0005
+```
 
 ## Тестирование модулей
 Для тестирования модулей введите в терминале:
 - ` pytest tests/test_masks.py`
 - ` pytest tests/test_widget.py`
 - ` pytest tests/test_processing.py`
+- ` pytest tests/test_generators.py`
