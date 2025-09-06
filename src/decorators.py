@@ -1,31 +1,34 @@
-from functools import wraps
+import functools
 from typing import Any, Callable, Optional
 
 
 def log(filename: Optional[str] = None) -> Callable:
-    """Декоратор для логирования выполнения функции. Если filename задан, данные
-    записываются в файл "mylog.txt", иначе выводятся в консоль."""
+    """Декоратор для логирования выполнения функции. Если задан 'filename' лог записывается в файл, иначе
+    выводится в консоль"""
 
     def decorator(func: Callable) -> Callable:
-        """Возвращает обёртку, которая логирует выполнение функции 'func'"""
+        """Обертка-декоратор для функции."""
 
-        @wraps(func)
+        @functools.wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
-            """Обёртка для выполнения функции 'func' с логированием ее результата
-            и ошибок."""
+            """Обертка, которая выполняет функцию и логирует результат или ошибку."""
             try:
                 result = func(*args, **kwargs)
-                name_func = func.__name__
+                message = f"{func.__name__} ok"
                 if filename:
-                    file = open(filename, "a", encoding="utf-8")
-                    file.write(f"Функция {name_func} ок. Результат: {result}" + "\n")
-                    file.close()
+                    with open(filename, "a", encoding="utf-8") as f:
+                        f.write(message + "\n")
                 else:
-                    print(f"{name_func} ок. Результат: {func(*args, **kwargs)}")
+                    print(message)
+                return result
             except Exception as e:
-                result = None
-                print(f"{func.__name__} error: {e}. Inputs: {args}, {kwargs}")
-            return result
+                error_message = f"{func.__name__} error: {type(e).__name__}. Inputs: {args}, {kwargs}"
+                if filename:
+                    with open(filename, "a", encoding="utf-8") as f:
+                        f.write(error_message + "\n")
+                else:
+                    print(error_message)
+                raise
 
         return wrapper
 

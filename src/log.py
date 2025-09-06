@@ -1,8 +1,8 @@
-from decorators import log
+from src.decorators import log
 
 
-@log(filename="mylog.txt")
-def my_function(x: int, y: int) -> int:
+@log(filename="log.txt")
+def my_function(x: int|float, y: int|float) -> int|float:
     return x + y
 
 
