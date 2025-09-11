@@ -110,6 +110,23 @@ for card_number in card_number_generator(1, 5):
     0000 0000 0000 0004
     0000 0000 0000 0005
 ```
+10. Декораторр ***@log*** используется для автоматической регистрации деталей выполнения функции
+
+    Пример использования декоратора:
+    ```
+    @log(filename="mylog.txt")
+    def my_function(x, y):
+        return x + y
+
+    my_function(1, 2)```
+    
+    Ожидаемый вывод в лог-файл mylog.txt при успешном выполнении:
+
+    my_function ok
+
+    Ожидаемый вывод при ошибке:
+
+    my_function error: тип ошибки. Inputs: (1, 2), {}
 
 ## Тестирование модулей
 Для тестирования модулей введите в терминале:
@@ -117,3 +134,4 @@ for card_number in card_number_generator(1, 5):
 - ` pytest tests/test_widget.py`
 - ` pytest tests/test_processing.py`
 - ` pytest tests/test_generators.py`
+- ` pytest tests/test_decorators.py`
