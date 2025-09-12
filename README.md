@@ -1,7 +1,7 @@
 # Домашняя работа
 # Приложение "Masks for bank card or account"
 ## Описание
-Приложение позволяет маскировать номер карты или номер счета
+Приложение позволяет маскировать номер карты или номер счета, просматривать операции по дате и статусу, сортировать операции по дате в порядке убывания, сортировать операции по заданной валюте
 ## Установка
 Клонируйте репозиторий: git@github.com:KuzinaKA85/Home_Work_04.08.2025.git
 ## Установите зависимости:
@@ -9,6 +9,7 @@
 - `pip install black`
 - `pip install mypy`
 - `pip install isort`
+- `pip install requests`
 
 ## Функции приложения
 1. Функция ***get_mask_card_number*** принимает на вход номер карты и возвращает ее маску
@@ -128,6 +129,10 @@ for card_number in card_number_generator(1, 5):
 
     my_function error: тип ошибки. Inputs: (1, 2), {}
 
+11. Функция ***read_transactions*** принимает на вход путь до JSON-файла и возвращает список словарей с данными
+    о финансовых транзакциях
+12. Функция ***convert*** принимает на вход транзакции и возвращает сумму в рублях
+
 ## Тестирование модулей
 Для тестирования модулей введите в терминале:
 - ` pytest tests/test_masks.py`
@@ -135,3 +140,5 @@ for card_number in card_number_generator(1, 5):
 - ` pytest tests/test_processing.py`
 - ` pytest tests/test_generators.py`
 - ` pytest tests/test_decorators.py`
+- ` pytest tests/test_utils.py`
+- ` pytest tests/test_external_api.py`
