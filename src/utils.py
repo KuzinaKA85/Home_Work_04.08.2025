@@ -6,6 +6,8 @@ filepath = r"C:\Users\sysadmin\Desktop\Project_Python\Home_Work_10.1\data\operat
 
 
 def read_transactions(file_path: str) -> List[Dict]:
+    """Функция принимает на вход путь до JSON-файла и возвращает список словарей с данными
+        о финансовых транзакциях"""
     if not os.path.exists(file_path):
         return []
 
