@@ -1,27 +1,46 @@
+import logging
+from pathlib import Path
+
+file_path_1 = Path("..", "logs", "masks.log")
+
+logger = logging.getLogger("masks")
+logger.setLevel(logging.DEBUG)
+file_handler = logging.FileHandler(file_path_1, "w", encoding="utf-8")
+file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
+
+
 def get_mask_card_number(number_card: str) -> str:
     """Функция принимает на вход номер карты и возвращает ее маску"""
     if len(number_card) == 16:
+        logger.info("Номер карты введен корректно (число символов равно 16)")
         form_str_1 = number_card[:6]
         form_str_2 = "******"
         form_str_3 = number_card[12:]
         total_form_str = form_str_1 + form_str_2 + form_str_3
-        new_str = [total_form_str[i : i + 4] for i in range(0, len(total_form_str), 4)]
+        new_str = [total_form_str[i:i + 4] for i in range(0, len(total_form_str), 4)]
         return " ".join(new_str)
     elif len(number_card) != 16:
+        logger.error("Введено некорректное число символов номера карты (не равное 16)")
         raise ValueError("Неправильная длина номера карты")
     else:
+        logger.error("Номер карты не введен")
         return "Номер карты не введен"
 
 
 def get_mask_account(mask_account: str) -> str:
     """Функция принимает на вход номер счета и возвращает его маску"""
     if len(mask_account) == 20:
+        logger.info("Номер счёта введен корректно (число символов равно 20)")
         formated_account_str_2 = "**"
         formated_account_str_3 = mask_account[-4:]
         return formated_account_str_2 + formated_account_str_3
     elif len(mask_account) != 20:
-        raise ValueError("Неправильная длина номера счета")
+        logger.error("Введено некорректное число символов номера счёта (не равное 20)")
+        raise ValueError("Неправильная длина номера счёта")
     else:
+        logger.error("Номер счёта не введен")
         return "Некорректный ввод номера счета"
 
 
