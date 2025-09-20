@@ -1,7 +1,6 @@
 import logging
-from pathlib import Path
 
-file_path_1 = Path("..", "logs", "masks.log")
+file_path_1 = r'C:\Users\sysadmin\Desktop\Project_Python\Home_Work_10.1\logs\masks.log'
 
 logger = logging.getLogger("masks")
 logger.setLevel(logging.DEBUG)
