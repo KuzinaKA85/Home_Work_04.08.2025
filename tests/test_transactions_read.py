@@ -1,4 +1,3 @@
-import pytest
 from unittest.mock import MagicMock, mock_open, patch
 
 from src.transactions_read import read_transactions_csv, read_transactions_xlsx

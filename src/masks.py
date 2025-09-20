@@ -1,6 +1,6 @@
 import logging
 
-file_path_1 = r'C:\Users\sysadmin\Desktop\Project_Python\Home_Work_10.1\logs\masks.log'
+file_path_1 = r"C:\Users\sysadmin\Desktop\Project_Python\Home_Work_10.1\logs\masks.log"
 
 logger = logging.getLogger("masks")
 logger.setLevel(logging.DEBUG)
@@ -18,7 +18,7 @@ def get_mask_card_number(number_card: str) -> str:
         form_str_2 = "******"
         form_str_3 = number_card[12:]
         total_form_str = form_str_1 + form_str_2 + form_str_3
-        new_str = [total_form_str[i:i + 4] for i in range(0, len(total_form_str), 4)]
+        new_str = [total_form_str[i : i + 4] for i in range(0, len(total_form_str), 4)]
         return " ".join(new_str)
     elif len(number_card) != 16:
         logger.error("Введено некорректное число символов номера карты (не равное 16)")
