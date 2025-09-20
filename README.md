@@ -10,6 +10,9 @@
 - `pip install mypy`
 - `pip install isort`
 - `pip install requests`
+- `pip python-doten`
+- `pip pandas`
+- `pip pytest`
 
 ## Функции приложения
 1. Функция ***get_mask_card_number*** принимает на вход номер карты и возвращает ее маску
@@ -132,6 +135,10 @@ for card_number in card_number_generator(1, 5):
 11. Функция ***read_transactions*** принимает на вход путь до JSON-файла и возвращает список словарей с данными
     о финансовых транзакциях
 12. Функция ***convert*** принимает на вход транзакции и возвращает сумму в рублях
+13. функция ***read_transactions_csv*** для считывания финансовых операций. Принимает на вход файл.csv, возвращает список
+    словарей
+14. Функция ***read_transactions_xlsx*** для считывания финансовых операций. Принимает на вход файл.xlsx, возвращает список
+    словарей
 
 ## Тестирование модулей
 Для тестирования модулей введите в терминале:
@@ -142,3 +149,4 @@ for card_number in card_number_generator(1, 5):
 - ` pytest tests/test_decorators.py`
 - ` pytest tests/test_utils.py`
 - ` pytest tests/test_external_api.py`
+-  `pytest tests/test_transactions_read.py`
