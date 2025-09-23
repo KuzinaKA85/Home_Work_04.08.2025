@@ -98,15 +98,13 @@ def test_iterator_behavior(sample_transactions):
         next(usd_iterator)
 
 
-@pytest.mark.parametrize("currency, expected_count", [("USD", 3), ("руб.", 2), ("EUR", 0)])
+@pytest.mark.parametrize("currency, expected_count", [("USD", 3), ("RUB", 2), ("EUR", 0)])
 def test_parametrized_currency_filtering(sample_transactions, currency, expected_count):
     """Параметризованный тест для разных валют."""
-
     result = list(filter_by_currency(sample_transactions, currency))
-
     assert len(result) == expected_count
     if expected_count > 0:
-        assert all(t["operationAmount"]["currency"]["name"] == currency for t in result)
+        assert all(t["operationAmount"]["currency"]["code"] == currency for t in result)
 
 
 def test_card_number_generator():

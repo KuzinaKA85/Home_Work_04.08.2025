@@ -52,7 +52,7 @@ def process_bank_search(data: list[dict], search: str) -> list[dict]:
     return result
 
 
-def process_bank_operations(data: list[dict], categories: list = "") -> dict:
+def process_bank_operations(data: list[dict], categories: list[Any] = "") -> dict:
     """
     принимать список словарей с данными о банковских операциях и
     список категорий операций, а возвращать словарь, в котором ключи
