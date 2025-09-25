@@ -71,9 +71,9 @@ def process_bank_operations(data: list[dict], categories: list[Any] = "") -> dic
 
 
 # Функция проверки работы кода
-if __name__ == "__main__":
-    print(filter_by_state(user_list, "EXECUTED"))
-    print(filter_by_state(user_list, "CANCELED"))
-    print(sort_by_date(user_list, reverse=True))
-    print(sort_by_date([{"id": 41428829, "state": "EXECUTED"}], reverse=True))
-    print(filter_by_state([], "EXECUTED"))
+# if __name__ == "__main__":
+#     print(filter_by_state(user_list, "EXECUTED"))
+#     print(filter_by_state(user_list, "CANCELED"))
+#     print(sort_by_date(user_list, reverse=True))
+#     print(sort_by_date([{"id": 41428829, "state": "EXECUTED"}], reverse=True))
+#     print(filter_by_state([], "EXECUTED"))

@@ -32,8 +32,8 @@ def read_transactions_xlsx(filepath: Path) -> List[Dict[Any, Any]]:
     return dict_reader
 
 
-if __name__ == "__main__":
-    result_csv = read_transactions_csv(filepath_csv)
-    pprint(result_csv)
-    result_xlsx = read_transactions_xlsx(filepath_xlsx)
-    pprint(result_xlsx)
+# if __name__ == "__main__":
+#     result_csv = read_transactions_csv(filepath_csv)
+#     pprint(result_csv)
+#     result_xlsx = read_transactions_xlsx(filepath_xlsx)
+#     pprint(result_xlsx)

@@ -29,17 +29,17 @@ def convert(transaction: Dict) -> Any:
     return response.json()["result"]
 
 
-if __name__ == "__main__":
-    print(
-        convert(
-            {
-                "date": "2019-08-16T04:23:41.621065",
-                "description": "Перевод с карты на счет",
-                "from": "MasterCard 8826230888662405",
-                "id": 86608620,
-                "operationAmount": {"amount": "6004.00", "currency": {"code": "USD", "name": "руб."}},
-                "state": "EXECUTED",
-                "to": "Счет 96119739109420349721",
-            }
-        )
-    )
+# if __name__ == "__main__":
+#     print(
+#         convert(
+#             {
+#                 "date": "2019-08-16T04:23:41.621065",
+#                 "description": "Перевод с карты на счет",
+#                 "from": "MasterCard 8826230888662405",
+#                 "id": 86608620,
+#                 "operationAmount": {"amount": "6004.00", "currency": {"code": "USD", "name": "руб."}},
+#                 "state": "EXECUTED",
+#                 "to": "Счет 96119739109420349721",
+#             }
+#         )
+#     )

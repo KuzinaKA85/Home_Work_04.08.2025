@@ -67,8 +67,8 @@ def filter_by_currency(transactions: List[Dict], currency: str) -> Iterable[Dict
 
 usd_transactions = filter_by_currency(transactions, "USD")
 
-for item in usd_transactions:
-    print(item)
+# for item in usd_transactions:
+#     print(item)
 
 
 def transaction_descriptions(my_list: List[Dict]) -> Iterable:
@@ -81,8 +81,8 @@ def transaction_descriptions(my_list: List[Dict]) -> Iterable:
 descriptions = transaction_descriptions(transactions)
 
 
-for item in descriptions:
-    print(item)
+# for item in descriptions:
+#     print(item)
 
 
 def generator_numbers_card(start: int = 1, stop: int = 9999999999999999) -> Iterable[str]:
@@ -104,5 +104,5 @@ def generator_numbers_card(start: int = 1, stop: int = 9999999999999999) -> Iter
 card_number_generator = generator_numbers_card(1, 5)
 
 
-for card_number in card_number_generator:
-    print(card_number)
+# for card_number in card_number_generator:
+#     print(card_number)
