@@ -49,19 +49,26 @@ transactions = [
 ]
 
 
-def filter_by_currency(transactions: List[Dict], name: str) -> Iterable[Dict]:
+def filter_by_currency(transactions: List[Dict], currency: str) -> Iterable[Dict]:
     """Функция принимает на вход список словарей, представляющих транзакции.
     Возвращает итератор, который поочередно выдает транзакции, где валюта операции
     соответствует заданной"""
-    for dictionary in transactions:
-        if dictionary["operationAmount"]["currency"]["name"] == name:
-            yield dictionary
+    result = (
+        transaction
+        for transaction in transactions
+        if (
+            transaction.get("operationAmount", {}).get("currency", {}).get("code") == currency
+            or transaction.get("currency_code") == currency
+    )
+    )
+
+    return result
 
 
 usd_transactions = filter_by_currency(transactions, "USD")
 
-for item in usd_transactions:
-    print(item)
+# for item in usd_transactions:
+#     print(item)
 
 
 def transaction_descriptions(my_list: List[Dict]) -> Iterable:
@@ -74,8 +81,8 @@ def transaction_descriptions(my_list: List[Dict]) -> Iterable:
 descriptions = transaction_descriptions(transactions)
 
 
-for item in descriptions:
-    print(item)
+# for item in descriptions:
+#     print(item)
 
 
 def generator_numbers_card(start: int = 1, stop: int = 9999999999999999) -> Iterable[str]:
@@ -97,5 +104,5 @@ def generator_numbers_card(start: int = 1, stop: int = 9999999999999999) -> Iter
 card_number_generator = generator_numbers_card(1, 5)
 
 
-for card_number in card_number_generator:
-    print(card_number)
+# for card_number in card_number_generator:
+#     print(card_number)

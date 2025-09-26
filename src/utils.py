@@ -4,7 +4,8 @@ import os
 from pathlib import Path
 from typing import Any
 
-file_path_1 = r"C:\Users\sysadmin\Desktop\Project_Python\Home_Work_10.1\logs\utils.log"
+file_path_1 = Path("..", "logs", "utils.log")
+# file_path_1 = r"C:\Users\sysadmin\Desktop\Project_Python\Home_Work_10.1\logs\utils.log"
 file_path_2 = Path("..", "data", "operations.json")
 
 logger = logging.getLogger("utils")
@@ -31,4 +32,4 @@ def read_transactions(file_path: Path) -> Any:
         return data
 
 
-print(read_transactions(file_path_2))
+# print(read_transactions(file_path_2))

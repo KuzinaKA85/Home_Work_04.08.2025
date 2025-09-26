@@ -1,3 +1,5 @@
+import re
+from collections import Counter
 from typing import Any, Dict, List
 
 
@@ -34,10 +36,44 @@ def sort_by_date(list_of_dicts: List[Dict], reverse: bool) -> Any:
             return sorted_list_of_dicts
 
 
+def process_bank_search(data: list[dict], search: str) -> list[dict]:
+    """
+    Фильтрует список банковских операций, оставляя только те,
+    в описании которых содержится указанная строка поиска.
+    """
+    pattern = re.compile(re.escape(search), re.IGNORECASE)
+
+    result = []
+    for operation in data:
+
+        desc = str(operation.get("description", ""))
+        if pattern.search(desc):
+            result.append(operation)
+    return result
+
+
+def process_bank_operations(data: list[dict], categories: list[Any] = "") -> dict:
+    """
+    принимать список словарей с данными о банковских операциях и
+    список категорий операций, а возвращать словарь, в котором ключи
+    — это названия категорий, а значения — это количество операций
+    в каждой категории
+    """
+    categories_from_data = []
+
+    for operation in data:
+        desc = str(operation.get("description", ""))
+        if desc in categories:
+            categories_from_data.append(desc)
+
+    result = Counter(categories_from_data)
+    return result
+
+
 # Функция проверки работы кода
-if __name__ == "__main__":
-    print(filter_by_state(user_list, "EXECUTED"))
-    print(filter_by_state(user_list, "CANCELED"))
-    print(sort_by_date(user_list, reverse=True))
-    print(sort_by_date([{"id": 41428829, "state": "EXECUTED"}], reverse=True))
-    print(filter_by_state([], "EXECUTED"))
+# if __name__ == "__main__":
+#     print(filter_by_state(user_list, "EXECUTED"))
+#     print(filter_by_state(user_list, "CANCELED"))
+#     print(sort_by_date(user_list, reverse=True))
+#     print(sort_by_date([{"id": 41428829, "state": "EXECUTED"}], reverse=True))
+#     print(filter_by_state([], "EXECUTED"))
