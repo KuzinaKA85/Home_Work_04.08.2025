@@ -1,6 +1,9 @@
 import logging
+from pathlib import Path
 
-file_path_1 = r"C:\Users\sysadmin\Desktop\Project_Python\Home_Work_10.1\logs\masks.log"
+
+file_path_1 = Path("..", "logs", "masks.log")
+# file_path_1 = r"C:\Users\sysadmin\Desktop\Project_Python\Home_Work_10.1\logs\masks.log"
 
 logger = logging.getLogger("masks")
 logger.setLevel(logging.DEBUG)
@@ -44,6 +47,6 @@ def get_mask_account(mask_account: str) -> str:
 
 
 # Функция проверки работы кода
-# if __name__ == "__main__":
-#     print(get_mask_card_number("7000792289606361"))
-#     print(get_mask_account("73654108430135874305"))
+if __name__ == "__main__":
+    print(get_mask_card_number("7000792289606361"))
+    print(get_mask_account("73654108430135874305"))
