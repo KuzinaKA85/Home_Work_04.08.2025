@@ -32,4 +32,4 @@ def read_transactions(file_path: Path) -> Any:
         return data
 
 
-print(read_transactions(file_path_2))
+# print(read_transactions(file_path_2))
